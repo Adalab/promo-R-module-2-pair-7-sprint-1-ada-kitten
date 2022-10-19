@@ -215,3 +215,7 @@ li {
   margin: 5px;
   color: white;
 }
+
+.uppercase {
+  text-transform: uppercase;
+}
