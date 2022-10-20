@@ -219,3 +219,7 @@ li {
 .uppercase {
   text-transform: uppercase;
 }
+
+.hidden {
+  display: none;
+}

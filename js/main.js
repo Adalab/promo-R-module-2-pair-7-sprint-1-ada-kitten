@@ -8,7 +8,7 @@ const listElement = document.querySelector('.js-list');
 
 const kittenOneImage = 'https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg';
 const kittenOneName = 'Anastacio'.toUpperCase();
-const kittenOneDesc = 'Ruiseño, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!';
+const kittenOneDesc = 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!';
 const kittenOneRace = 'British Shorthair';
 
 const kittenOne = `<li class="card"> <article> <img class="card_img" src= "${kittenOneImage}" alt="gatito" /><h3 class="card_title"> ${kittenOneName}</h3><h4 class="card_race"> ${kittenOneRace} </h4><p class="card_description"> ${kittenOneDesc} </p></article></li>`;
@@ -28,6 +28,25 @@ const kittenThreeRace = 'British Shorthair';
 
 const kittenThree = `<li class="card"> <article> <img class="card_img" src= "${kittenThreeImage}" alt="gatito" /><h3 class="card_title"> ${kittenThreeName} </h3><h4 class="card_race"> ${kittenThreeRace} </h4><p class="card_description"> ${kittenThreeDesc} </p></article></li>`;
 
-const content = kittenOne + kittenTwo + kittenThree;
+let content = kittenOne + kittenTwo + kittenThree;
 
 listElement.innerHTML = content;
+
+const inputSearchDesc = document.querySelector('.js_in_search_desc');
+inputSearchDesc.value = 'cariñoso';
+const descrSearchText = inputSearchDesc.value;
+
+if( kittenOneDesc.includes(descrSearchText) || kittenTwoDesc.includes(descrSearchText) || /* || inputSearchDesc.value = ''*/ )  {
+
+    } else {
+        kittenOne.style.display = "none";
+    }
+    
+/* if( kittenTwoDesc.includes(descrSearchText) ) {
+    //Completa el código
+    }
+    
+if( kittenThreeDesc.includes(descrSearchText) ) {
+    //Completa el código
+    }
+ */
