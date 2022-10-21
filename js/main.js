@@ -28,25 +28,26 @@ const kittenThreeRace = 'British Shorthair';
 
 const kittenThree = `<li class="card"> <article> <img class="card_img" src= "${kittenThreeImage}" alt="gatito" /><h3 class="card_title"> ${kittenThreeName} </h3><h4 class="card_race"> ${kittenThreeRace} </h4><p class="card_description"> ${kittenThreeDesc} </p></article></li>`;
 
-let content = kittenOne + kittenTwo + kittenThree;
+//let content = kittenOne + kittenTwo + kittenThree;
 
-listElement.innerHTML = content;
+//listElement.innerHTML = content;
 
 const inputSearchDesc = document.querySelector('.js_in_search_desc');
 inputSearchDesc.value = 'cariñoso';
 const descrSearchText = inputSearchDesc.value;
 
-if( kittenOneDesc.includes(descrSearchText) || kittenTwoDesc.includes(descrSearchText) || /* || inputSearchDesc.value = ''*/ )  {
+let content = "";
 
-    } else {
-        kittenOne.style.display = "none";
+if( kittenOneDesc.includes(descrSearchText) )  {
+    content += kittenOne;
     }
     
-/* if( kittenTwoDesc.includes(descrSearchText) ) {
-    //Completa el código
+if( kittenTwoDesc.includes(descrSearchText) ) {
+    content += kittenTwo;
     }
     
 if( kittenThreeDesc.includes(descrSearchText) ) {
-    //Completa el código
+    content += kittenThree;
     }
- */
+
+listElement.innerHTML = content;
