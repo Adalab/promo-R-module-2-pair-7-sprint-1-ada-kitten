@@ -1,9 +1,5 @@
 'use strict';
 
-const newForm = document.querySelector('.js-new-form');
-
-newForm.classList.remove('collapsed');
-
 const listElement = document.querySelector('.js-list');
 
 const kittenOneImage = 'https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg';
@@ -33,7 +29,7 @@ const kittenThree = `<li class="card"> <article> <img class="card_img" src= "${k
 //listElement.innerHTML = content;
 
 const inputSearchDesc = document.querySelector('.js_in_search_desc');
-inputSearchDesc.value = 'cariñoso';
+inputSearchDesc.value = 'juguetón';
 const descrSearchText = inputSearchDesc.value;
 
 let content = "";
@@ -51,3 +47,36 @@ if( kittenThreeDesc.includes(descrSearchText) ) {
     }
 
 listElement.innerHTML = content;
+
+const menuItem = document.querySelector('.js-item');
+
+const newForm = document.querySelector('.js-new-form');
+
+//newForm.classList.remove('collapsed');
+
+menuItem.addEventListener('click', ()=>{
+    newForm.classList.toggle('collapsed');
+});
+
+const addButton = document.querySelector('.js-btn-add');
+
+const inputDesc = document.querySelector('.js-input-desc');
+const inputPhoto = document.querySelector('.js-input-photo');
+const inputName = document.querySelector('.js-input-name');
+const labelMessageError = document.querySelector('.js-label-error');
+
+addButton.addEventListener('click', (event)=>{
+    event.preventDefault();
+    console.log('test');
+    const valueDesc = inputDesc.value;
+    const valuePhoto = inputPhoto.value;
+    const valueName = inputName.value;
+
+if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+    //addButton.setAttribute ('title = "Hola"');
+    alert('Debe rellenar todos los valores.');
+} else {
+  //completa el código
+}
+});
+
