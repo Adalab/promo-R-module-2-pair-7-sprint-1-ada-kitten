@@ -10,7 +10,7 @@ const kittenOneDesc = 'Cariñoso, juguetón, le guta estar tranquilo y que nadie
 const kittenOneRace = 'British Shorthair';
 
 //DATA SECTION: Variable with HTML element for kittenOne with previous variables inserted
-const kittenOne = `<li class="card"> <article> <img class="card_img" src= "${kittenOneImage}" alt="gatito" /><h3 class="card_title"> ${kittenOneName}</h3><h4 class="card_race"> ${kittenOneRace} </h4><p class="card_description"> ${kittenOneDesc} </p></article></li>`;
+/*const kittenOne = `<li class="card"> <article> <img class="card_img" src= "${kittenOneImage}" alt="gatito" /><h3 class="card_title"> ${kittenOneName}</h3><h4 class="card_race"> ${kittenOneRace} </h4><p class="card_description"> ${kittenOneDesc} </p></article></li>`;*/
 
 //DATA SECTION: Variables for kittenTwo 
 const kittenTwoImage = 'https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg';
@@ -19,7 +19,7 @@ const kittenTwoDesc = 'Ruiseño, juguetón, le guta estar tranquilo y que nadie 
 const kittenTwoRace = 'British Shorthair';
 
 //DATA SECTION: Variable with HTML element for kittenTwo with previous variables inserted
-const kittenTwo = `<li class="card"> <article> <img class="card_img" src= "${kittenTwoImage}" alt="gatito" /><h3 class="card_title"> ${kittenTwoName} </h3><h4 class="card_race"> ${kittenTwoRace} </h4><p class="card_description"> ${kittenTwoDesc} </p></article></li>`;
+/*const kittenTwo = `<li class="card"> <article> <img class="card_img" src= "${kittenTwoImage}" alt="gatito" /><h3 class="card_title"> ${kittenTwoName} </h3><h4 class="card_race"> ${kittenTwoRace} </h4><p class="card_description"> ${kittenTwoDesc} </p></article></li>`;*/
 
 //DATA SECTION: Variables for kittenThree
 const kittenThreeImage = 'https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg';
@@ -28,7 +28,22 @@ const kittenThreeDesc = 'Ruiseño, juguetón, le guta estar tranquilo y que nadi
 const kittenThreeRace = 'British Shorthair';
 
 //DATA SECTION: Variable with HTML element for kittenThree with previous variables inserted
-const kittenThree = `<li class="card"> <article> <img class="card_img" src= "${kittenThreeImage}" alt="gatito" /><h3 class="card_title"> ${kittenThreeName} </h3><h4 class="card_race"> ${kittenThreeRace} </h4><p class="card_description"> ${kittenThreeDesc} </p></article></li>`;
+/*const kittenThree = `<li class="card"> <article> <img class="card_img" src= "${kittenThreeImage}" alt="gatito" /><h3 class="card_title"> ${kittenThreeName} </h3><h4 class="card_race"> ${kittenThreeRace} </h4><p class="card_description"> ${kittenThreeDesc} </p></article></li>`;*/
+
+//DATA SECTION: Crear el gatito en HTML (lección 5.1)
+//Declare empty variable
+
+//Function to complete variable.innerHTML with the info declared when executing the function
+function renderKitten(url, desc, name, race) {
+    const listItem = `<li class="card"> <article> <img class="card_img" src= "${url}" alt="gatito" /><h3 class="card_title"> ${name} </h3><h4 class="card_race"> ${race} </h4><p class="card_description"> ${desc} </p></article></li>`;
+    listElement.innerHTML += listItem;
+}
+
+renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+
+renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
+
+renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
 //SEARCH SECTION: Show kittens from ul list only if they include a specific word/value inserted in the input description from the search section of HTML document
 const inputSearchDesc = document.querySelector('.js_in_search_desc');
@@ -39,7 +54,7 @@ const descrSearchText = inputSearchDesc.value;
 let content = "";
 
 //Conditions: if the description includes the value/word from the search form, the specific variable (HTML element) will be added to the content
-if( kittenOneDesc.includes(descrSearchText) )  {
+/*if( kittenOneDesc.includes(descrSearchText) )  {
     content += kittenOne;
     }
     
@@ -52,20 +67,41 @@ if( kittenThreeDesc.includes(descrSearchText) ) {
     }
 
 //DATA-SECTION: The innerHTML of the declared variable in section data, for ul element
-listElement.innerHTML = content;
+listElement.innerHTML = content;*/
 
 // 1. Mostrar/ocultar formulario
 //HEADER & NEW-FORM SECTION: Create variables for + icon (js-item) and form from new-form section of the HTML document
 const menuItem = document.querySelector('.js-item');
-const newForm = document.querySelector('.js-new-form');
+const newFormElement = document.querySelector('.js-new-form');
 
 //HEADER & NEW-FORM SECTION: Show or hide form, when clicking in + icon with an event listener and toggle
 
-menuItem.addEventListener('click', ()=>{
+/*menuItem.addEventListener('click', ()=>{
     newForm.classList.toggle('collapsed');
-});
+});*/
 
 const addButton = document.querySelector('.js-btn-add');
+
+//HEADER & NEW-FORM SECTION: Mostrar/ocultar el formulario nuevo gatito con funciones (lección 5.1)
+
+function showNewCatForm() {
+    newFormElement.classList.remove('collapsed');
+}
+
+function hideNewCatForm() {
+    newFormElement.classList.add('collapsed');
+}
+
+function handleClickNewCatForm(event) {
+    event.preventDefault();
+    if (newFormElement.classList.contains('collapsed')) {
+        showNewCatForm();
+    } else {
+        hideNewCatForm();
+    }
+}
+
+menuItem.addEventListener('click', handleClickNewCatForm);
 
 //2. Validar formulario nuevo gatito
 //NEW-FORM SECTION: Validate form for a new kitten
@@ -78,7 +114,7 @@ const inputBreed = document.querySelector('.js-input-breed');
 const labelMessageError = document.querySelector('.js-label-error');
 
 //NEW-FORM SECTION: Add event listener when clicking in Añadir
-addButton.addEventListener('click', (event)=>{
+/*addButton.addEventListener('click', (event)=>{
     event.preventDefault();
     //Create variables for each input value once we have clicked in Añadir
     const valueDesc = inputDesc.value;
@@ -97,7 +133,33 @@ addButton.addEventListener('click', (event)=>{
     }else{
     //Nothing to be done 
     }
-});
+});*/
+
+//NEW-FORM SECTION: Adicionar nuevo gatito (lección 5.1)
+
+//Create function 
+function addNewKitten(event) {
+    event.preventDefault();
+    //Create variables for each input value once we have clicked in Añadir
+    const valueDesc = inputDesc.value;
+    const valuePhoto = inputPhoto.value;
+    const valueName = inputName.value;
+    const valueBreed = inputBreed.value;
+    // Create a condition, if any of the inputs are empty, alert message
+    if (valueDesc === '' || valuePhoto === '' || valueName === '') {
+    //addButton.setAttribute ('title = "Hola"'); Title only works when hover
+    alert('Debe rellenar todos los valores.');
+    } else {
+    //Nothing to be done
+    }
+    if (valueBreed === ""){
+        alert('No se ha especificado la raza');
+    }else{
+    //Nothing to be done 
+    }
+}
+//Add even listener with function
+addButton.addEventListener('click', addNewKitten);
 
 //3. Validar formulario búsqueda
 //SEARCH SECTION : Validate search form from search section of the HTML document
