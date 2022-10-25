@@ -34,21 +34,31 @@ const kittenThreeRace = 'British Shorthair';
 //Declare empty variable
 
 //Function to complete variable.innerHTML with the info declared when executing the function
-function renderKitten(url, desc, name, race) {
+/*function renderKitten(url, desc, name, race) {
     const listItem = `<li class="card"> <article> <img class="card_img" src= "${url}" alt="gatito" /><h3 class="card_title"> ${name} </h3><h4 class="card_race"> ${race} </h4><p class="card_description"> ${desc} </p></article></li>`;
     listElement.innerHTML += listItem;
+}*/
+
+function renderKitten(url, desc, name, race) {
+    return `<li class="card"> <article> <img class="card_img" src= "${url}" alt="gatito" /><h3 class="card_title"> ${name} </h3><h4 class="card_race"> ${race} </h4><p class="card_description"> ${desc} </p></article></li>`;
 }
 
 //renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
 
-renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+
+const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
+
+const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
+
+/*renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
 const kittenOne = renderKitten();
 
 renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
 const kittenTwo = renderKitten ();
 
 renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
-const kittenThree = renderKitten();
+const kittenThree = renderKitten();*/
 
 /* //SEARCH SECTION: Show kittens from ul list only if they include a specific word/value inserted in the input description from the search section of HTML document
 const inputSearchDesc = document.querySelector('.js_in_search_desc');
@@ -184,25 +194,34 @@ searchButton.addEventListener('click', (event)=>{
     
     const descrSearchText = inputSearchDesc.value.toLowerCase();
     const breedSearchText = inputSearchBreed.value.toLowerCase();
+    console.log(descrSearchText);
+    console.log(kittenOneDesc);
     // Create a condition, if any of the inputs are empty, alert message
     if (descrSearchText === '' && breedSearchText === '') {
         console.log('uno');
         //addButton.setAttribute ('title = "Hola"'); Title only works when hover
         alert('Debe rellenar alguno de los dos valores.');
-        } else if ( kittenOneDesc.includes(descrSearchText) )  {
+        } 
+    // Create a condition, if it includes the word in search input, add to content
+    if (kittenOneDesc.toLowerCase().includes(descrSearchText))  {
+            console.log(descrSearchText);
             console.log(kittenOne);
             content += kittenOne ; 
             console.log('uno'); 
-            } else if ( kittenTwoDesc.includes(descrSearchText) ) {
+            }
+    // Create a condition, if it includes the word in search input, add to content
+    if ( kittenTwoDesc.toLowerCase().includes(descrSearchText) ) {
                 content += kittenTwo;
                 console.log('dos'); //Added to the result of the previous condition
-                } else if ( kittenThreeDesc.includes(descrSearchText) ) {
+                } 
+    // Create a condition, if it includes the word in search input, add to content
+    if ( kittenThreeDesc.toLowerCase().includes(descrSearchText) ) {
                     content += kittenThree;
                     console.log('tres'); //Added to the result of the previous condition
-                    } else {console.log('no funciona');
-                }
-         
-listElement.innerHTML = content;  
+    } else {console.log('no funciona');
+    }
+    // Inner HTML of the ul = content result form previous conditions
+    listElement.innerHTML = content;  
         });
  
 
