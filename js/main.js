@@ -39,13 +39,18 @@ function renderKitten(url, desc, name, race) {
     listElement.innerHTML += listItem;
 }
 
+//renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+
 renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+const kittenOne = renderKitten();
 
 renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
+const kittenTwo = renderKitten ();
 
 renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
+const kittenThree = renderKitten();
 
-//SEARCH SECTION: Show kittens from ul list only if they include a specific word/value inserted in the input description from the search section of HTML document
+/* //SEARCH SECTION: Show kittens from ul list only if they include a specific word/value inserted in the input description from the search section of HTML document
 const inputSearchDesc = document.querySelector('.js_in_search_desc');
 //inputSearchDesc.value = 'juguetón';
 const descrSearchText = inputSearchDesc.value;
@@ -166,31 +171,86 @@ addButton.addEventListener('click', addNewKitten);
 const inputSearchBreed = document.querySelector('.js_in_search_breed');
 const searchButton = document.querySelector('.js_search_btn');
 
+//SEARCH SECTION: Show kittens from ul list only if they include a specific word/value inserted in the input description from the search section of HTML document
+const inputSearchDesc = document.querySelector('.js_in_search_desc');
+//inputSearchDesc.value = 'juguetón';
+/* const descrSearchText = inputSearchDesc.value; */
+
 //SEARCH SECTION: Add event listener when clicking in Buscar
 searchButton.addEventListener('click', (event)=>{
     event.preventDefault();
     //Create variables for each input value once we have clicked in Buscar
-    const descrSearchText = inputSearchDesc.value;
-    const breedSearchText = inputSearchBreed.value;
+    let content = "";
+    
+    const descrSearchText = inputSearchDesc.value.toLowerCase();
+    const breedSearchText = inputSearchBreed.value.toLowerCase();
     // Create a condition, if any of the inputs are empty, alert message
     if (descrSearchText === '' && breedSearchText === '') {
+        console.log('uno');
         //addButton.setAttribute ('title = "Hola"'); Title only works when hover
         alert('Debe rellenar alguno de los dos valores.');
-        } else {
-        //Nothing to be done
-        }
-    });
+        } else if ( kittenOneDesc.includes(descrSearchText) )  {
+            console.log(kittenOne);
+            content += kittenOne ; 
+            console.log('uno'); 
+            } else if ( kittenTwoDesc.includes(descrSearchText) ) {
+                content += kittenTwo;
+                console.log('dos'); //Added to the result of the previous condition
+                } else if ( kittenThreeDesc.includes(descrSearchText) ) {
+                    content += kittenThree;
+                    console.log('tres'); //Added to the result of the previous condition
+                    } else {console.log('no funciona');
+                }
+         
+listElement.innerHTML = content;  
+        });
+ 
+
+
+//DATA-SEARCH SECTIONS: We create a variable that starts as empty
+// let content = "";
+
+//Conditions: if the description includes the value/word from the search form, the specific variable (HTML element) will be added to the content
+/*if( kittenOneDesc.includes(descrSearchText) )  {
+    content += kittenOne;
+    }
     
+if( kittenTwoDesc.includes(descrSearchText) ) {
+    content += kittenTwo; //Added to the result of the previous condition
+    }
+    
+if( kittenThreeDesc.includes(descrSearchText) ) {
+    content += kittenThree; //Added to the result of the previous condition
+    }
+
+//DATA-SECTION: The innerHTML of the declared variable in section data, for ul element
+listElement.innerHTML = content;*/
+
 
 // 4. Cancelar formulario
 // Create variable for button Cancelar
 const newCancelButton = document.querySelector('.js-btn-cancel');
 
 //Empty input values + hide form with toggle collapsed when clicking in Cancelar
-newCancelButton.addEventListener('click', ()=>{
+const cancelNewKitten = (ev)=>{
+    ev.preventDefault();
     inputDesc.value = '';
     inputPhoto.value = '';
     inputName.value = '';
     inputBreed.value = '';
-    newForm.classList.toggle('collapsed');
-});
+    newFormElement.classList.toggle('collapsed');
+};
+// 1. Cancelar nuevo gatito (lesson 2.6)
+newCancelButton.addEventListener('click', cancelNewKitten);
+
+
+/* SI USÁRAMOS ESTE TIPO DE FUNCIÓN, FUNCIONARÍA IGUAL ANTES DE LLAMARLA O DESPUÉS (antes o después del eventlistener)
+
+function cancelNewKitten (ev) {
+    ev.preventDefault();
+    inputDesc.value = '';
+    inputPhoto.value = '';
+    inputName.value = '';
+    inputBreed.value = '';
+    newFormElement.classList.toggle('collapsed');
+};*/
