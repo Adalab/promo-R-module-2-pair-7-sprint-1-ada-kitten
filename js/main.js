@@ -51,6 +51,8 @@ const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kit
 
 const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
+listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
+
 /*renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
 const kittenOne = renderKitten();
 
