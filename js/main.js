@@ -58,7 +58,7 @@ const kittenOneObject = new getKittenData('https://ychef.files.bbci.co.uk/976x54
 
 console.dir(kittenOneObject );
 
-const kittenTwoObject = new getKittenData('https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg', 'Fiona','British Shorthair', 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
+const kittenTwoObject = new getKittenData('https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg', 'Fiona','British Shorthair', 'Risueño, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
 
 const kittenThreeObject = new getKittenData('https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg', 'Cielo','British Shorthair', 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
 
@@ -69,7 +69,13 @@ function renderKitten(kittenData) {
     return html;
 }
 
-listElement.innerHTML = renderKitten(kittenOneObject) + renderKitten(kittenTwoObject) + renderKitten(kittenThreeObject);
+const kittenOne = renderKitten(kittenOneObject) ;
+
+const kittenTwo = renderKitten(kittenTwoObject);
+
+const kittenThree = renderKitten(kittenThreeObject);
+
+listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
 
 
 //renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
@@ -239,24 +245,28 @@ searchButton.addEventListener('click', (event)=>{
     if (descrSearchText === '' && breedSearchText === '') {
         //addButton.setAttribute ('title = "Hola"'); Title only works when hover
         alert('Debe rellenar alguno de los dos valores.');
-        } 
-    // Create a condition, if it includes the word in search input, add to content. Lowercase también en la descripción del gatito, para compararlo con el valor introducido que hemos forzado a minúsculas
-    if (kittenOneDesc.toLowerCase().includes(descrSearchText))  {
-            content += kittenOne ; 
+        } else if (descrSearchText !== '' || breedSearchText !== '') {
+            // Create a condition, if it includes the word in search input, add to content. Lowercase también en la descripción del gatito, para compararlo con el valor introducido que hemos forzado a minúsculas
+            if (kittenOneObject.desc.toLowerCase().includes(descrSearchText))  {
+            content += kittenOne; 
             }
-    // Create a condition, if it includes the word in search input, add to content
-    if ( kittenTwoDesc.toLowerCase().includes(descrSearchText) ) {
+            // Create a condition, if it includes the word in search input, add to content
+            if ( kittenTwoObject.desc.toLowerCase().includes(descrSearchText) ) {
                 content += kittenTwo; //Added to the result of the previous condition
                 } 
-    // Create a condition, if it includes the word in search input, add to content
-    if ( kittenThreeDesc.toLowerCase().includes(descrSearchText) ) {
+            // Create a condition, if it includes the word in search input, add to content
+            if ( kittenThreeObject.desc.toLowerCase().includes(descrSearchText) ) {
                     content += kittenThree; //Added to the result of the previous condition
-    } else {
-        alert('No existe ningún gatito que se ajuste a tu búsqueda.');
-    }
+            }}
+            else {
+                alert('No existe ningún gatito que se ajuste a tu búsqueda.');
+                }
+        
     // Inner HTML of the ul = content result form previous conditions
-    listElement.innerHTML = content;  
+    listElement.innerHTML = content; 
+   
         });
+
 
 
 //DATA-SEARCH SECTIONS: We create a variable that starts as empty
