@@ -39,18 +39,21 @@ const kittenThreeRace = 'British Shorthair';
     listElement.innerHTML += listItem;
 }*/
 
+//La función nos devuelve el elemento HTML
 function renderKitten(url, desc, name, race) {
     return `<li class="card"> <article> <img class="card_img" src= "${url}" alt="gatito" /><h3 class="card_title"> ${name} </h3><h4 class="card_race"> ${race} </h4><p class="card_description"> ${desc} </p></article></li>`;
 }
 
 //renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
 
+//Creamos variables para cada gato llamando a la función anterior
 const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
 
 const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
 
 const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
+//El innerHTML de la ul es igual a la suma de las variables creadas anteriormente
 listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
 
 /*renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
@@ -189,43 +192,36 @@ const inputSearchDesc = document.querySelector('.js_in_search_desc');
 /* const descrSearchText = inputSearchDesc.value; */
 
 //SEARCH SECTION: Add event listener when clicking in Buscar
+// 2. Filtrar por descripción (lección 2.6)
 searchButton.addEventListener('click', (event)=>{
     event.preventDefault();
-    //Create variables for each input value once we have clicked in Buscar
+    // Iniciar una variable content vacía, que después de verificar todas las condiciones, será lo que se convierta en el innerHTML de la ul
     let content = "";
-    
+    //Create variables for each input value once we have clicked in Buscar. Añadir lowercase para forzar lo que introduzca el usuario a minúsculas
     const descrSearchText = inputSearchDesc.value.toLowerCase();
     const breedSearchText = inputSearchBreed.value.toLowerCase();
-    console.log(descrSearchText);
-    console.log(kittenOneDesc);
     // Create a condition, if any of the inputs are empty, alert message
     if (descrSearchText === '' && breedSearchText === '') {
-        console.log('uno');
         //addButton.setAttribute ('title = "Hola"'); Title only works when hover
         alert('Debe rellenar alguno de los dos valores.');
         } 
-    // Create a condition, if it includes the word in search input, add to content
+    // Create a condition, if it includes the word in search input, add to content. Lowercase también en la descripción del gatito, para compararlo con el valor introducido que hemos forzado a minúsculas
     if (kittenOneDesc.toLowerCase().includes(descrSearchText))  {
-            console.log(descrSearchText);
-            console.log(kittenOne);
             content += kittenOne ; 
-            console.log('uno'); 
             }
     // Create a condition, if it includes the word in search input, add to content
     if ( kittenTwoDesc.toLowerCase().includes(descrSearchText) ) {
-                content += kittenTwo;
-                console.log('dos'); //Added to the result of the previous condition
+                content += kittenTwo; //Added to the result of the previous condition
                 } 
     // Create a condition, if it includes the word in search input, add to content
     if ( kittenThreeDesc.toLowerCase().includes(descrSearchText) ) {
-                    content += kittenThree;
-                    console.log('tres'); //Added to the result of the previous condition
-    } else {console.log('no funciona');
+                    content += kittenThree; //Added to the result of the previous condition
+    } else {
+        alert('No existe ningún gatito que se ajuste a tu búsqueda.');
     }
     // Inner HTML of the ul = content result form previous conditions
     listElement.innerHTML = content;  
         });
- 
 
 
 //DATA-SEARCH SECTIONS: We create a variable that starts as empty
