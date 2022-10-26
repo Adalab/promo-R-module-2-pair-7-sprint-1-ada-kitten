@@ -39,22 +39,54 @@ const kittenThreeRace = 'British Shorthair';
     listElement.innerHTML += listItem;
 }*/
 
-//La función nos devuelve el elemento HTML
-function renderKitten(url, desc, name, race) {
-    return `<li class="card"> <article> <img class="card_img" src= "${url}" alt="gatito" /><h3 class="card_title"> ${name} </h3><h4 class="card_race"> ${race} </h4><p class="card_description"> ${desc} </p></article></li>`;
+
+//RENDER KITTEN: 1. Convertir cada gatito en un objeto (lección 2.7). Función genérica para definir un objeto:
+
+function getKittenData (img,nm,rc,desc){
+    const kittenData = {
+        image: img,
+        name: nm.toUpperCase(),
+        race: rc,
+        desc: desc
+    }
+    return kittenData;
 }
+
+//Ejecutamos la función para crear un objeto de cada gatito
+
+const kittenOneObject = new getKittenData('https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg', 'Anastacio','British Shorthair', 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
+
+console.dir(kittenOneObject );
+
+const kittenTwoObject = new getKittenData('https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg', 'Fiona','British Shorthair', 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
+
+const kittenThreeObject = new getKittenData('https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg', 'Cielo','British Shorthair', 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
+
+
+//RENDER KITTEN: La función nos devuelve el elemento HTML con el objeto creado como parámetro
+function renderKitten(kittenData) {
+    const html = `<li class="card"> <article> <img class="card_img" src= "${kittenData.image}" alt="gatito" /><h3 class="card_title"> ${kittenData.name} </h3><h4 class="card_race"> ${kittenData.race} </h4><p class="card_description"> ${kittenData.desc} </p></article></li>`;
+    return html;
+}
+
+listElement.innerHTML = renderKitten(kittenOneObject) + renderKitten(kittenTwoObject) + renderKitten(kittenThreeObject);
+
 
 //renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
 
 //Creamos variables para cada gato llamando a la función anterior
-const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
+
+
+//listElement.innerHTML =
+
+/*const kittenOne = renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
 
 const kittenTwo = renderKitten(kittenTwoImage, kittenTwoDesc, kittenTwoName, kittenTwoRace);
 
 const kittenThree = renderKitten(kittenThreeImage, kittenThreeDesc, kittenThreeName, kittenThreeRace);
 
 //El innerHTML de la ul es igual a la suma de las variables creadas anteriormente
-listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
+listElement.innerHTML = kittenOne + kittenTwo + kittenThree;*/
 
 /*renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
 const kittenOne = renderKitten();
@@ -170,13 +202,16 @@ function addNewKitten(event) {
     //addButton.setAttribute ('title = "Hola"'); Title only works when hover
     alert('Debe rellenar todos los valores.');
     } else {
-    //Nothing to be done
+    //Nothing to be done    
     }
-    if (valueBreed === ""){
+    //4. BONUS: Funciones dentro de funciones (lección 2.6), función recogida del ejercicio 3, línea 281
+    renderRace(inputBreed);
+    //Forma 1 de verificar si se ha especificado la raza
+    /*if (valueBreed === ""){
         alert('No se ha especificado la raza');
     }else{
     //Nothing to be done 
-    }
+    }*/
 }
 //Add even listener with function
 addButton.addEventListener('click', addNewKitten);
@@ -271,3 +306,24 @@ function cancelNewKitten (ev) {
     inputBreed.value = '';
     newFormElement.classList.toggle('collapsed');
 };*/
+
+//3. Mostrar la raza o no (lección 2.6)
+
+// Crear una función genérica para comparar el valor del parámetro recogido y ver si está vacío
+function renderRace(race) {
+        //Si el valor está vacío o undefined
+        if (race.value === '' || race.value === undefined){
+            console.log(`<p class="card_race">No se ha especificado la raza</p>`);
+        }else{ //Si se ha especificado un valor lo recoge
+            console.log(`<h3 class="card_race">${race.value}</h3>`);
+        }
+}
+
+// Event listener con la función genérica, en este caso queremos que el parámetro sea el valor del input de la raza cuando se ejecute al hacer clik
+/*addButton.addEventListener('click', (event)=>{
+        event.preventDefault();
+        renderRace(inputBreed);
+});*/
+
+
+
