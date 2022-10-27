@@ -54,14 +54,18 @@ function getKittenData (img,nm,rc,desc){
 
 //Ejecutamos la función para crear un objeto de cada gatito
 
-const kittenOneObject = new getKittenData('https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg', 'Anastacio','British Shorthair', 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
+const kittenOneObject = getKittenData('https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg', 'Anastacio','British Shorthair', 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
 
-console.dir(kittenOneObject );
 
-const kittenTwoObject = new getKittenData('https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg', 'Fiona','British Shorthair', 'Risueño, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
 
-const kittenThreeObject = new getKittenData('https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg', 'Cielo','British Shorthair', 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
+const kittenTwoObject = getKittenData('https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg', 'Fiona','British Shorthair', 'Risueño, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
 
+const kittenThreeObject = getKittenData('https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg', 'Cielo','British Shorthair', 'Cariñoso, juguetón, le guta estar tranquilo y que nadie lemoleste. Es una maravilla acariciarle!');
+
+// 2.8 1. Crear listado de gatitos I
+
+const kittenDataList = [kittenOneObject, kittenTwoObject,kittenThreeObject]
+console.log(kittenDataList[1]);
 
 //RENDER KITTEN: La función nos devuelve el elemento HTML con el objeto creado como parámetro
 function renderKitten(kittenData) {
