@@ -64,22 +64,45 @@ const kittenThreeObject = getKittenData('https://media-cldnry.s-nbcnews.com/imag
 
 // 2.8 1. Crear listado de gatitos I
 
-const kittenDataList = [kittenOneObject, kittenTwoObject,kittenThreeObject]
+const kittenDataList = [kittenOneObject, kittenTwoObject, kittenThreeObject];
 console.log(kittenDataList[1]);
+
+// 1. Crear listado de gatitos II (lección 2.9)
+
+//Forma 1: for...of
+/*function renderKittenList(kittenDataList) {
+    let html = '';
+    for (const kitten of kittenDataList){
+        html += renderKitten(kitten);
+    }
+    listElement.innerHTML = html;
+}*/
+
+//Forma 2: for
+function renderKittenList(kittens) {
+    let html = '';
+    for (let i=0; i<kittens.length; i++){
+        html += renderKitten(kittens[i]);
+    }
+    listElement.innerHTML = html;
+}
+
+//Ejecutamos la función para que en cada loop recoja los elementos HTML li para cada gato
+renderKittenList(kittenDataList);
 
 //RENDER KITTEN: La función nos devuelve el elemento HTML con el objeto creado como parámetro
 function renderKitten(kittenData) {
     const html = `<li class="card"> <article> <img class="card_img" src= "${kittenData.image}" alt="gatito" /><h3 class="card_title"> ${kittenData.name} </h3><h4 class="card_race"> ${kittenData.race} </h4><p class="card_description"> ${kittenData.desc} </p></article></li>`;
     return html;
 }
-
+/*
 const kittenOne = renderKitten(kittenOneObject) ;
 
 const kittenTwo = renderKitten(kittenTwoObject);
 
 const kittenThree = renderKitten(kittenThreeObject);
 
-listElement.innerHTML = kittenOne + kittenTwo + kittenThree;
+listElement.innerHTML = kittenOne + kittenTwo + kittenThree;*/
 
 
 //renderKitten(kittenOneImage, kittenOneDesc, kittenOneName, kittenOneRace);
@@ -238,7 +261,7 @@ const inputSearchDesc = document.querySelector('.js_in_search_desc');
 
 //SEARCH SECTION: Add event listener when clicking in Buscar
 // 2. Filtrar por descripción (lección 2.6)
-searchButton.addEventListener('click', (event)=>{
+/* searchButton.addEventListener('click', (event)=>{
     event.preventDefault();
     // Iniciar una variable content vacía, que después de verificar todas las condiciones, será lo que se convierta en el innerHTML de la ul
     let content = "";
@@ -267,10 +290,43 @@ searchButton.addEventListener('click', (event)=>{
                 }
         
     // Inner HTML of the ul = content result form previous conditions
-    listElement.innerHTML = content; 
+    listElement.innerHTML = content; *
    
-        });
+        }); */
 
+//2. Filtrar por descripción (lección 2.9 BUCLES):   
+
+searchButton.addEventListener('click', (event)=>{
+            event.preventDefault();
+            filterKitten ();
+});
+
+
+function filterKitten (){
+     // Iniciar una variable content vacía, que después de verificar todas las condiciones, será lo que se convierta en el innerHTML de la ul
+     let html = "";
+     //Create variables for each input value once we have clicked in Buscar. Añadir lowercase para forzar lo que introduzca el usuario a minúsculas
+     const descrSearchText = inputSearchDesc.value.toLowerCase();
+     const breedSearchText = inputSearchBreed.value.toLowerCase();
+     // Create a condition, if any of the inputs are empty, alert message
+     if (descrSearchText === '' && breedSearchText === '') {
+         //addButton.setAttribute ('title = "Hola"'); Title only works when hover
+         alert('Debe rellenar alguno de los dos valores.');
+         } else if (descrSearchText !== '' || breedSearchText !== '') {
+             // Create a condition, if it includes the word in search input, add to content. Lowercase también en la descripción del gatito, para compararlo con el valor introducido que hemos forzado a minúsculas
+             for (const kitten of kittenDataList){
+                if(kitten.desc.toLowerCase().includes(descrSearchText)){
+                    html += renderKitten(kitten);
+                }
+             }
+             }
+             else {
+                 alert('No existe ningún gatito que se ajuste a tu búsqueda.');
+                 }
+         
+     // Inner HTML of the ul = content result form previous conditions
+     listElement.innerHTML = html; 
+}
 
 
 //DATA-SEARCH SECTIONS: We create a variable that starts as empty
